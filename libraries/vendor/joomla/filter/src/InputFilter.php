@@ -145,7 +145,6 @@ class InputFilter
 		'dynsrc',
 		'formaction',
 		'lowsrc',
-		'formaction',
 	);
 
 	/**
