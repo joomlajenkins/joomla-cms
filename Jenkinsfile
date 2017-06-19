@@ -3,6 +3,7 @@
 pipeline {
   agent any
   stages {
+
     stage('codestyles') {
       agent {
         docker 'rdeutz/docker-phpcs'
@@ -50,7 +51,6 @@ pipeline {
       }
     }
 
-
     stage('Testing-Javascript') {
       agent {
         docker {
@@ -70,6 +70,18 @@ pipeline {
             tests/javascript/node_modules/karma/bin/karma start karma.conf.js --single-run
         '''
         sh 'echo $(date)'
+      }
+    }
+
+    stage('System test') {
+      agent {
+        docker {
+           image 'joomlaprojects/docker-systemtests'
+           args  '--user 0 --privileged'
+        }
+      }
+      steps {
+        sh 'bash build/jenkins/system-tests.sh'
       }
     }
   }
