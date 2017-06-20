@@ -6,7 +6,7 @@ pipeline {
 
     stage('codestyles') {
       agent {
-        docker 'joomla-projects/docker-phpcs'
+        docker 'joomlaprojects/docker-phpcs'
       }
       steps {
         sh 'echo $(date)'
