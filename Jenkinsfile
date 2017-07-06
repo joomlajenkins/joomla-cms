@@ -16,9 +16,7 @@ pipeline {
       }
       post {
         always {
-            dir($WORKSPACE) {
-                deleteDir()
-            }
+            step([$class: 'WsCleanup'])
         }
       }
     }
