@@ -12,9 +12,13 @@ pipeline {
       steps {
         sh 'echo $(date)'
         sh 'echo $WORKSPACE'
-        sh '/usr/local/vendor/bin/phpcs --report=full --extensions=php -p --standard=build/phpcs/Joomla .'
-        dir($WORKSPACE) {
-            deleteDir()
+        sh '#/usr/local/vendor/bin/phpcs --report=full --extensions=php -p --standard=build/phpcs/Joomla .'
+      }
+      post {
+        always {
+            dir($WORKSPACE) {
+                deleteDir()
+            }
         }
       }
     }
