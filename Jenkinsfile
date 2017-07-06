@@ -11,6 +11,7 @@ pipeline {
       }
       steps {
         sh 'echo $(date)'
+        sh 'echo $WORKSPACE'
         sh '/usr/local/vendor/bin/phpcs --report=full --extensions=php -p --standard=build/phpcs/Joomla .'
       }
     }
